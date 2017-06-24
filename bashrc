@@ -5,7 +5,7 @@ export WINEARCH=win32
 
 export EDITOR="vim"
 
-# prompt with git && rbenv
+# prompt with git
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
@@ -137,10 +137,8 @@ export NVM_DIR="/home/weverton/.nvm"
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-source ~/.imports
-
 ### Start tmux with the terminal
-if [[ ! $TERM =~ screen ]]; then
-    exec tmux
-fi
+#if [[ ! $TERM =~ screen ]]; then
+#    exec tmux
+#fi
 
