@@ -2,7 +2,7 @@
 
 "Plugins -- vim-plug
 call plug#begin('~/.vim/plugged')
-
+Plug 'othree/html5.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'kchmck/vim-coffee-script'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -38,8 +38,6 @@ set nu
 syntax enable
 syntax on
 
-au BufRead,BufNewFile Podfile set filetype=ruby
-au BufRead,BufNewFile Berksfile set filetype=ruby
 au BufRead,BufNewFile *.hamlc set filetype=haml
 au BufRead,BufNewFile *.ejs set filetype=html
 
@@ -186,8 +184,6 @@ set listchars=tab:▸\ ,eol:¬
 "Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
-
-autocmd BufRead,BufNewFile *.tokamak set filetype=ruby
 
 " Build tags for the current directory
 nmap <F2> :!/usr/bin/ctags-exuberant -R .<CR>
