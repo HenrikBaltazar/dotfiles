@@ -747,11 +747,51 @@ function! htmlcomplete#CompleteTags(findstart, base)
   endif
 endfunction
 
+
+function! htmlcomplete#DetectOmniFlavor()
+  if &filetype == 'xhtml'
+    let b:html_omni_flavor = 'xhtml10s'
+  else
+    let b:html_omni_flavor = 'html401t'
+  endif
+  let i = 1
+  let line = ""
+  while i < 10 && i < line("$")
+    let line = getline(i)
+    if line =~ '<!DOCTYPE.*\<DTD '
+      break
+    endif
+    let i += 1
+  endwhile
+  if line =~ '<!DOCTYPE.*\<DTD '  " doctype line found above
+    if line =~ ' HTML 3\.2'
+      let b:html_omni_flavor = 'html32'
+    elseif line =~ ' XHTML 1\.1'
+      let b:html_omni_flavor = 'xhtml11'
+    else    " two-step detection with strict/frameset/transitional
+      if line =~ ' XHTML 1\.0'
+	let b:html_omni_flavor = 'xhtml10'
+      elseif line =~ ' HTML 4\.01'
+	let b:html_omni_flavor = 'html401'
+      elseif line =~ ' HTML 4.0\>'
+	let b:html_omni_flavor = 'html40'
+      endif
+      if line =~ '\<Transitional\>'
+	let b:html_omni_flavor .= 't'
+      elseif line =~ '\<Frameset\>'
+	let b:html_omni_flavor .= 'f'
+      else
+	let b:html_omni_flavor .= 's'
+      endif
+    endif
+  endif
+endfunction
+
 function! htmlcomplete#LoadAria() " {{{
     runtime! autoload/xml/aria.vim
     if exists("g:xmldata_aria")
-        \ && has_key(g:xmldata_aria, 'default_role') 
-        \ && has_key(g:xmldata_aria, 'role_attributes') 
+        \ && has_key(g:xmldata_aria, 'default_role')
+        \ && has_key(g:xmldata_aria, 'role_attributes')
         \ && has_key(g:xmldata_aria, 'vimariaattrinfo')
         \ && has_key(g:xmldata_aria, 'aria_attributes')
         let b:aria_omni = g:xmldata_aria
