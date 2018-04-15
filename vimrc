@@ -14,7 +14,7 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'gcmt/wildfire.vim'
-"Plug 'dracula/vim', {'as': 'dracula'}
+Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'wfleming/vim-codeclimate'
 Plug 'posva/vim-vue'
 Plug 'bronson/vim-trailing-whitespace'
@@ -44,7 +44,7 @@ au BufRead,BufNewFile *.ejs set filetype=html
 " theme
 set background=dark
 colorscheme dracula
-colo dracula
+color dracula
 set guifont="Monaco":h15
 
 " Show theme hi CursorLine
