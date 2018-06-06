@@ -141,4 +141,4 @@ export PATH="/usr/local/heroku/bin:$PATH"
 #if [[ ! $TERM =~ screen ]]; then
 #    exec tmux
 #fi
-
+export CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES="1366x768a"
